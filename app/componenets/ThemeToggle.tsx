@@ -1,41 +1,30 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+"use client";
 
+import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 export default function ThemeToggle() {
-const [isDark, setIsDark] = useState(true);
+  const [theme, setTheme] = useState("");
 
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") || "light";
+    setTheme(saved);
+    document.documentElement.classList.toggle("dark", saved === "dark");
+  }, []);
 
-useEffect(() => {
-const body = document.documentElement;
-if (localStorage.theme === 'light') {
-body.classList.remove('dark');
-setIsDark(false);
-} else {
-body.classList.add('dark');
-setIsDark(true);
-}
-}, []);
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    localStorage.setItem("theme", next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+  };
 
-
-const toggle = () => {
-const body = document.documentElement;
-if (body.classList.contains('dark')) {
-body.classList.remove('dark');
-localStorage.theme = 'light';
-setIsDark(false);
-} else {
-body.classList.add('dark');
-localStorage.theme = 'dark';
-setIsDark(true);
-}
-};
-
-
-return (
-<button onClick={toggle} aria-label="Toggle theme" className="p-2 rounded-full hover:bg-white/10 transition">
-{isDark ? <FaSun /> : <FaMoon />}
-</button>
-);
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-3 rounded-xl bg-gray-200 dark:bg-gray-800"
+    >
+      {theme === "dark" ? <FaSun /> : <FaMoon />}
+    </button>
+  );
 }

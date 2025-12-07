@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 :root {
 --bg-1: #0f0c29;
 --bg-2: #302b63;

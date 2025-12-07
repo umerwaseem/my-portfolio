@@ -9,11 +9,11 @@ description: 'Creative and detail-focused Frontend Developer. Angular & Next.js 
 
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-return (
-<html lang="en">
-<body>
-{children}
-</body>
-</html>
-);
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-white text-black dark:bg-black dark:text-white">
+        {children}
+      </body>
+    </html>
+  );
 }
