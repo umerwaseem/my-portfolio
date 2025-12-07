@@ -8,8 +8,8 @@ import Footer from "./componenets/Footer";
 import Navbar from "./componenets/Navbar";
 
 export default function Home() {
- return (
-    <main className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
+  return (
+    <main className="min-h-screen text-white">
       <Navbar />
       <Hero />
       <About />
